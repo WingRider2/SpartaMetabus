@@ -30,6 +30,7 @@ public class BaseController : MonoBehaviour
     protected virtual void Update()
     {
         Rotate(lookDirection);
+        
     }
     protected virtual void FixedUpdate()
     {
@@ -40,8 +41,7 @@ public class BaseController : MonoBehaviour
         float rotZ = Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
 
-        playerRenderer.flipX = isLeft;
-        
+        playerRenderer.flipX = isLeft;        
     }
     private void Movment(Vector2 direction)
     {

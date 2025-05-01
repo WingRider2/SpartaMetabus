@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;//教臂沛积己
         player = FindAnyObjectByType<PlayerController>();
-        player.Init(this);
+        player.Init(this,new HomeMove(),new DungeonLook());//老窜 积己磊肺 备泅
     }
 
 }

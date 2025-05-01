@@ -7,30 +7,33 @@ public class PlayerController : BaseController
 {
     private GameManager gameManager;
     private Camera camera;
-    public void Init(GameManager gameManager)
+
+    private MoveStategy moveStategy;
+    private LookStategy lookStategy;
+    public void Init(GameManager gameManager, MoveStategy moveStategy, LookStategy lookStategy)
     {
         this.gameManager = gameManager;
         camera = Camera.main;
+        this.moveStategy = moveStategy;
+        this.lookStategy = lookStategy;
 
     }
     void OnMove(InputValue inputValue)
     {
-        movementDirection = inputValue.Get<Vector2>();
-        movementDirection = movementDirection.normalized;
+        moveStategy.OnMove(inputValue, out movementDirection);
     }
     void OnLook(InputValue inputValue)
     {
-        Vector2 moserPos = inputValue.Get<Vector2>();
-        Vector2 worldPos = camera.ScreenToWorldPoint(moserPos);
-        lookDirection = (worldPos - (Vector2)transform.position);
+        lookStategy.OnLook(inputValue, transform, camera ,movementDirection, out lookDirection);
 
-        if(lookDirection.magnitude < .9f)
-        {
-            lookDirection = Vector2.zero;
-        }
-        else
-        {
-            lookDirection = lookDirection.normalized;
-        }
+    }
+
+    public void SetMoveStrategy(MoveStategy stategy)
+    {
+        moveStategy = stategy;
+    }
+    public void SetLookStrategy(LookStategy stategy)
+    {
+        lookStategy = stategy;
     }
 }
