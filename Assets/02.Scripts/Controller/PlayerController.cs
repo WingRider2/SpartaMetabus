@@ -7,7 +7,7 @@ public class PlayerController : BaseController
 {
     private GameManager gameManager;
     private Camera camera;
-    protected void init(GameManager gameManager)
+    public void Init(GameManager gameManager)
     {
         this.gameManager = gameManager;
         camera = Camera.main;
@@ -18,13 +18,13 @@ public class PlayerController : BaseController
         movementDirection = inputValue.Get<Vector2>();
         movementDirection = movementDirection.normalized;
     }
-    void onLook(InputValue inputValue)
+    void OnLook(InputValue inputValue)
     {
         Vector2 moserPos = inputValue.Get<Vector2>();
         Vector2 worldPos = camera.ScreenToWorldPoint(moserPos);
         lookDirection = (worldPos - (Vector2)transform.position);
 
-        if(lookDirection.magnitude < 0.9f)
+        if(lookDirection.magnitude < .9f)
         {
             lookDirection = Vector2.zero;
         }
