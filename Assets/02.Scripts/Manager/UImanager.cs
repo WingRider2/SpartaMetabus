@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        dialogueUI = GetComponentInChildren<DialogueUI>();
+        dialogueUI = GetComponentInChildren<DialogueUI>(true);
         dialogueUI.Init(this);
     }
 

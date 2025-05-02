@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer playerRenderer;
+    [SerializeField] private SpriteRenderer Renderer;
 
     protected Rigidbody2D _rigidbody;
-    protected AnimationHandler animationHandler;
+    protected IAnimationHandler animationHandler;
     protected StatHandler statHandler;
 
     protected Vector2 movementDirection = Vector2.zero;
@@ -19,8 +19,7 @@ public class BaseController : MonoBehaviour
 
     protected virtual void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        animationHandler = GetComponent<AnimationHandler>();
+        _rigidbody = GetComponent<Rigidbody2D>();        
         statHandler = GetComponent<StatHandler>();
     }
     protected virtual void Start()
@@ -36,12 +35,18 @@ public class BaseController : MonoBehaviour
     {
         Movment(movementDirection);
     }
+
+    protected virtual void HandleAction()
+    {
+
+    }
+
     private void Rotate(Vector2 direction)
     {
         float rotZ = Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
 
-        playerRenderer.flipX = isLeft;        
+        Renderer.flipX = isLeft;        
     }
     private void Movment(Vector2 direction)
     {

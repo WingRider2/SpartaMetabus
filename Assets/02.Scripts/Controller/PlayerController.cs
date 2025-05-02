@@ -18,6 +18,11 @@ public class PlayerController : BaseController
         this.lookStategy = lookStategy;
 
     }
+    protected override void Awake()
+    {
+        base.Awake();
+        animationHandler = GetComponent<PlayerAnimationHandler>();
+    }
     void OnMove(InputValue inputValue)
     {
         moveStategy.OnMove(inputValue, out movementDirection);
