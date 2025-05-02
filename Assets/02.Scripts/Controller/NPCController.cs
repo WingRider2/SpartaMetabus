@@ -10,7 +10,7 @@ public class NPCController : BaseController
     private Transform player;
 
     public TextMeshProUGUI text;
-    
+    public RectTransform button;
 
     [SerializeField] private const float followRange = 15f;
 

@@ -11,10 +11,7 @@ public class DialogueUI : BaseUI
     {
         return UIState.Dialogue;
     }
-    void init(string text)
-    {
-        this.text.text = text;
-    }
+
     // Start is called before the first frame update
     void Start()
     {
