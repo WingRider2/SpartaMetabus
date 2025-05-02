@@ -9,3 +9,10 @@ public enum UIState
     GameOver,
     Dialogue,
 }
+
+public enum npc
+{
+    None,
+    °íºí¸°,
+
+}

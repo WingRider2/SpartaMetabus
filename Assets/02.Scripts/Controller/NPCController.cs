@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -7,6 +8,9 @@ public class NPCController : BaseController
 {
     private NPCManager NPCManager;
     private Transform player;
+
+    public TextMeshProUGUI text;
+    public RectTransform button;
 
     [SerializeField] private const float followRange = 15f;
 
@@ -19,6 +23,7 @@ public class NPCController : BaseController
     {
         base.Awake();
         animationHandler = GetComponent<NPCAnimationHandler>();
+        text.text = npc.°íºí¸°.ToString();
     }
     protected override void HandleAction()
     {

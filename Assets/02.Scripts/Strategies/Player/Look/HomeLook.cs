@@ -9,6 +9,5 @@ public class HomeLook : LookStategy
     public void OnLook(InputValue inputValue, Transform transform, Camera camera, Vector2 movementDirection, out Vector2 lookDirection)
     {
         lookDirection = movementDirection;
-
     }
 }
