@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 3164625930871852965}
   - component: {fileID: 6442416956502790524}
   - component: {fileID: 8387479165923101026}
+  - component: {fileID: 6534005219007914567}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -464,8 +465,21 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 3, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &6534005219007914567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3648126655217251638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870d37a1be8d3c34ab32300c16ee13be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 603011871233397851}
 --- !u!1 &5178814706457221939
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +712,6 @@ MonoBehaviour:
   Renderer: {fileID: 3074905272434388584}
   weaponPivot: {fileID: 0}
   text: {fileID: 8498603735692212254}
-  button: {fileID: 7017009951323395173}
 --- !u!114 &335764170040706861
 MonoBehaviour:
   m_ObjectHideFlags: 0
