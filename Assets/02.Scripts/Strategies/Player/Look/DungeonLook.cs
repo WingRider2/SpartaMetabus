@@ -18,7 +18,7 @@ public class DungeonLook : LookStategy
         }
         else
         {
-            lookDirection = lookDirection.normalized;
+            lookDirection = lookDirection;
         }
     }
 }

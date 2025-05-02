@@ -5,6 +5,7 @@ using UnityEngine;
 public class BaseController : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer Renderer;
+    [SerializeField] private Transform weaponPivot;
 
     protected Rigidbody2D _rigidbody;
     protected IAnimationHandler animationHandler;
@@ -28,6 +29,7 @@ public class BaseController : MonoBehaviour
     }
     protected virtual void Update()
     {
+        HandleAction();
         Rotate(lookDirection);
         
     }
@@ -41,12 +43,22 @@ public class BaseController : MonoBehaviour
 
     }
 
-    private void Rotate(Vector2 direction)
+    private void Rotate(Vector2 direction)// 무기회전
     {
         float rotZ = Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
 
-        Renderer.flipX = isLeft;        
+        Renderer.flipX = isLeft;    
+        
+        if (weaponPivot != null)
+        {
+            weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ); // 무기 방향을 돌려준다.
+        }
+    }
+
+    private void FlipX(Vector2 direction)
+    {
+
     }
     private void Movment(Vector2 direction)
     {
