@@ -4,15 +4,17 @@ using UnityEngine;
 
 public enum UIState
 {
+    None,
     Home,
     Game,
     GameOver,
     Dialogue,
+    Flappy,
 }
 public enum SceneName
 {
     None,
-    HomeTown,
+    HomeTownScene,
     FlappyGameScene,
 }
 

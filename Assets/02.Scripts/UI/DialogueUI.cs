@@ -40,7 +40,7 @@ public class DialogueUI : BaseUI
 
     public void gameStart(SceneName sceneName)
     {
-        SceneManager.LoadScene($"{sceneName}");
+        GameManager.instance.startFlappyGame(sceneName); //실글톤 바로 호출 좋은건 아니지만 일단 기능 완성부터 
     }
     public void nextCount()
     {

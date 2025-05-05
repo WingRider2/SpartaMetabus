@@ -5,34 +5,41 @@ using UnityEngine.SceneManagement;
 
 public class FlappyGameManager : MonoBehaviour
 {
+    GameManager gameManager;
+
     static FlappyGameManager instance;
     public static FlappyGameManager Instance { get { return instance; } }
-    static FlappyUIManager flappyUiManager;
-    public static FlappyUIManager FlappyUiManager { get { return flappyUiManager; } }
-
+    UIManager uIManager;
+    
     private int currentScore = 0;
+    public void init(GameManager gameManager , UIManager uIManager)
+    {
+        this.gameManager = gameManager;
+        instance = this;
+        this.uIManager = uIManager;
+    }
 
     private void Awake()
     {
-        instance = this;
-        flappyUiManager = FindObjectOfType<FlappyUIManager>();
+
     }
     private void Start()
     {
-        flappyUiManager.UpdateScore(0);
+        uIManager.FlappyGameUpdateScore(0);
     }
     public void GameOver()
     {
         Debug.Log("Game Over");
-        flappyUiManager.SetRestart();
+        uIManager.FlappyGameSetRestart();
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneName.HomeTownScene.ToString());
+        uIManager.ReturnTown();
     }
     public void AddScore(int score)
     {
         currentScore += score;
-        flappyUiManager.UpdateScore(currentScore);
+        uIManager.FlappyGameUpdateScore(currentScore);
     }
 }
