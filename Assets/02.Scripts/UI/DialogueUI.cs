@@ -9,7 +9,8 @@ public class DialogueUI : BaseUI
 {
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Button NextButton;
-
+    [SerializeField] private Button CancelButton;
+    [SerializeField] private TextMeshProUGUI buttoText;
     string[] dialogues = null;
     int nextTextCount = 0;
     MiniGame miniGame;
