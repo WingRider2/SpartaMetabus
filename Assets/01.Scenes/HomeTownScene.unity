@@ -4398,7 +4398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1d459e8b1321145b4f31ce696c845c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  text: {fileID: 211422109}
   NextButton: {fileID: 88060055}
 --- !u!1 &1065931412
 GameObject:
@@ -6792,6 +6792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5376861fa2e5a3b4baa265cfaeb64fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
 --- !u!4 &1460636490
 Transform:
   m_ObjectHideFlags: 0

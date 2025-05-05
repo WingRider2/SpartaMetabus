@@ -28,7 +28,7 @@ public class NPCManager : MonoBehaviour
 
             GameObject sponNPC = Instantiate(npc,sponPos,Quaternion.identity);
             NPCController npcController = sponNPC.GetComponent<NPCController>();
-            npcController.init(this, gameManager.player.transform);
+            npcController.init(this, gameManager.player.transform , gameManager);
 
             activeNPC.Add(npcController);
         }

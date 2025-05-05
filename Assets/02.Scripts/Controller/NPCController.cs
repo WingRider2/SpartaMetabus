@@ -7,6 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class NPCController : BaseController
 {
     private NPCManager NPCManager;
+    private GameManager gameManager;
     private Transform player;
 
     [SerializeField] private GameObject triggerArea;
@@ -15,14 +16,16 @@ public class NPCController : BaseController
 
     public GameObject button;
 
+    [SerializeField]private string[] lines;
     bool inRange = false;
     public NpcName npcName;
     [SerializeField] private const float followRange = 15f;
 
-    public void init(NPCManager NPCManager , Transform player)
+    public void init(NPCManager NPCManager , Transform player , GameManager gameManager)
     {
         this.NPCManager = NPCManager;
         this.player = player;
+        this.gameManager = gameManager;
     }
     protected override void Awake()
     {
@@ -36,7 +39,14 @@ public class NPCController : BaseController
     {
         button.SetActive(false);
     }
-
+    void Update()
+    {
+        if (inRange && Input.GetKeyDown(KeyCode.T))//이거는 플레이어가 1명일때 가능한 부분으로 추정
+        {
+            Debug.Log("열림");
+            gameManager.openDialogue(lines);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -54,14 +64,7 @@ public class NPCController : BaseController
             button.SetActive(false);
         }
     }
-    void Update()
-    {
-        if (inRange && Input.GetKeyDown(KeyCode.T))
-        {
-            Debug.Log("열림");
-            //DialogueUI.SetActive(DialogueUI);
-        }
-    }
+
     protected override void HandleAction()
     {
         base.HandleAction();

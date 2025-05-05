@@ -22,8 +22,11 @@ public class UIManager : MonoBehaviour
     {
         ChangeState(UIState.GameOver);
     }
-
-
+    public void SetOndialogue(string[] dialogue)
+    {
+        dialogueUI.Init(dialogue);
+        ChangeState(UIState.Dialogue);
+    }
 
     public void ChangeState(UIState state)
     {

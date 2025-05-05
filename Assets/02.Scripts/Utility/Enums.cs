@@ -13,7 +13,13 @@ public enum SceneName
 {
     None,
     HomeTown,
-    FlappyGame,
+    FlappyGameScene,
+}
+
+public enum miniGame
+{
+    None,
+    Flappy,
 }
 public enum NpcName
 {

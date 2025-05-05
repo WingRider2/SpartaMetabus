@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class DialogueUI : BaseUI
 {
-    [SerializeField] private TextMeshPro text;
+    [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Button NextButton;
 
     string[] dialogues = null;
@@ -18,7 +18,9 @@ public class DialogueUI : BaseUI
     }
     public void Init(string[] dialogues)
     {
+        this.dialogues = null;
         this.dialogues = dialogues;
+        UpdateNaxtText();
     }
     // Start is called before the first frame update
     void Start()
@@ -27,18 +29,22 @@ public class DialogueUI : BaseUI
     }
     public void UpdateNaxtText()
     {
-        text.text = dialogues[nextTextCount];
+        if (nextTextCount < dialogues.Length)
+        {
+            text.text = dialogues[nextTextCount];
+        }            
         NextButton.onClick.RemoveAllListeners();
-        if (dialogues.Length == nextTextCount) NextButton.onClick.AddListener(() => gameStart(SceneName.FlappyGame));
+        if (dialogues.Length == nextTextCount) NextButton.onClick.AddListener(() => gameStart(SceneName.FlappyGameScene));
         else NextButton.onClick.AddListener(() => nextCount());
     }
 
     public void gameStart(SceneName sceneName)
     {
-        SceneManager.LoadScene($"{sceneName}", LoadSceneMode.Additive);
+        SceneManager.LoadScene($"{sceneName}");
     }
     public void nextCount()
     {
         nextTextCount++;
+        UpdateNaxtText();
     }
 }

@@ -442,6 +442,10 @@ MonoBehaviour:
   triggerArea: {fileID: 4681345449787768804}
   text: {fileID: 7332825738431298145}
   button: {fileID: 7117502806082835107}
+  lines:
+  - "\uC548\uB155!"
+  - "\uB09C \uCC9C\uC0AC\uC57C \uB098 \uC880 \uB3C4\uC904\uB798?"
+  - "\uB108\uC758 \uCD5C\uACE0\uAE30\uB85D\uC740 @\uC774\uC57C"
   npcName: 3
 --- !u!114 &469162003297480901
 MonoBehaviour:
