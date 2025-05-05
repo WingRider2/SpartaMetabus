@@ -18,7 +18,7 @@ public enum SceneName
     FlappyGameScene,
 }
 
-public enum miniGame
+public enum MiniGame
 {
     None,
     Flappy,
@@ -29,5 +29,4 @@ public enum NpcName
     고블린,
     드워프,
     천사
-
 }

@@ -30,9 +30,9 @@ public class UIManager : MonoBehaviour
     {
         ChangeState(UIState.None);
     }
-    public void SetOndialogue(string[] dialogue)
+    public void SetOndialogue(string[] dialogue , MiniGame miniGame)
     {
-        dialogueUI.Init(dialogue);
+        dialogueUI.Init(dialogue , miniGame);
         ChangeState(UIState.Dialogue);
     }
     public void SetPlayFlappyGame()

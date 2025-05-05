@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public static bool isFirstLoading = false;
     public PlayerController player { get; private set; }
 
-    public Dictionary<miniGame, int> miniGameReselts = new();
+    public static Dictionary<MiniGame, int> miniGameReselts;
 
     private void Awake()
     {
@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
         uiManager = FindAnyObjectByType<UIManager>();
 
         npcManager = GetComponentInChildren<NPCManager>();
-        npcManager.init(this);
+        npcManager.init(this);        
+
 
         flappyGameManager = GetComponentInChildren<FlappyGameManager>(true);        
     }
@@ -33,22 +34,35 @@ public class GameManager : MonoBehaviour
     {
         if (!isFirstLoading)
         {
-            StartGame();
+            StartGame();            
         }
         else
         {
             isFirstLoading = false;
+        }
+        if (miniGameReselts == null)
+        {
+            miniGameReselts=new Dictionary<MiniGame, int>();
+        }
+        if (!miniGameReselts.ContainsKey(MiniGame.Flappy))
+        {
+            
+            miniGameReselts.Add(MiniGame.Flappy, 0);
         }
     }
     public void StartGame()
     {
         npcManager.sponNPC();
     }
-    public void openDialogue(string[] Dialogues)
+    public void openDialogue(string[] Dialogues, MiniGame miniGame)
     {
-        uiManager.SetOndialogue(Dialogues);
+        uiManager.SetOndialogue(Dialogues, miniGame);
     }
-
+    public void SetFlappyPoint(int point)
+    {
+        Debug.Log(point);
+        miniGameReselts[MiniGame.Flappy] = point;
+    }
     public void startFlappyGame(SceneName sceneName)
     {
         SceneManager.LoadScene($"{sceneName}");

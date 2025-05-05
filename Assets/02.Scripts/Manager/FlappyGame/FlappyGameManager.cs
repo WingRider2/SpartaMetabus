@@ -32,9 +32,10 @@ public class FlappyGameManager : MonoBehaviour
         Debug.Log("Game Over");
         uIManager.FlappyGameSetRestart();
     }
-    public void RestartGame()
+    public void ReturnTown()
     {
         SceneManager.LoadScene(SceneName.HomeTownScene.ToString());
+        gameManager.SetFlappyPoint(currentScore);
         uIManager.ReturnTown();
     }
     public void AddScore(int score)

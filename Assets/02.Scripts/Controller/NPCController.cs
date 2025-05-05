@@ -19,6 +19,7 @@ public class NPCController : BaseController
     [SerializeField]private string[] lines;
     bool inRange = false;
     public NpcName npcName;
+    public MiniGame miniGame;
     [SerializeField] private const float followRange = 15f;
 
     public void init(NPCManager NPCManager , Transform player , GameManager gameManager)
@@ -44,7 +45,7 @@ public class NPCController : BaseController
         if (inRange && Input.GetKeyDown(KeyCode.T))//이거는 플레이어가 1명일때 가능한 부분으로 추정
         {
             Debug.Log("열림");
-            gameManager.openDialogue(lines);
+            gameManager.openDialogue(lines, miniGame);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

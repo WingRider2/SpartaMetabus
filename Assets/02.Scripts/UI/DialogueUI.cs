@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,15 +12,17 @@ public class DialogueUI : BaseUI
 
     string[] dialogues = null;
     int nextTextCount = 0;
-
+    MiniGame miniGame;
     protected override UIState GetUIState()
     {
         return UIState.Dialogue;
     }
-    public void Init(string[] dialogues)
+    public void Init(string[] dialogues , MiniGame miniGame)
     {
         this.dialogues = null;
         this.dialogues = dialogues;
+        this.miniGame = miniGame;
+        nextTextCount = 0;
         UpdateNaxtText();
     }
     // Start is called before the first frame update
@@ -31,6 +34,9 @@ public class DialogueUI : BaseUI
     {
         if (nextTextCount < dialogues.Length)
         {
+            if (dialogues[nextTextCount].Contains("@")) {
+                dialogues[nextTextCount] = dialogues[nextTextCount].Replace("@", GameManager.miniGameReselts[miniGame].ToString());
+            }
             text.text = dialogues[nextTextCount];
         }            
         NextButton.onClick.RemoveAllListeners();
