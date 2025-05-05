@@ -9,10 +9,17 @@ public enum UIState
     GameOver,
     Dialogue,
 }
-
-public enum npc
+public enum SceneName
+{
+    None,
+    HomeTown,
+    FlappyGame,
+}
+public enum NpcName
 {
     None,
     고블린,
+    드워프,
+    천사
 
 }

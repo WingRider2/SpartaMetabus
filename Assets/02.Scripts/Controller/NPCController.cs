@@ -9,8 +9,14 @@ public class NPCController : BaseController
     private NPCManager NPCManager;
     private Transform player;
 
+    [SerializeField] private GameObject triggerArea;
+
     public TextMeshProUGUI text;
 
+    public GameObject button;
+
+    bool inRange = false;
+    public NpcName npcName;
     [SerializeField] private const float followRange = 15f;
 
     public void init(NPCManager NPCManager , Transform player)
@@ -22,7 +28,39 @@ public class NPCController : BaseController
     {
         base.Awake();
         animationHandler = GetComponent<NPCAnimationHandler>();
-        text.text = npc.고블린.ToString();
+        text.text = npcName.ToString();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        button.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            inRange = true;
+            button.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            inRange = false;
+            button.SetActive(false);
+        }
+    }
+    void Update()
+    {
+        if (inRange && Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.Log("열림");
+            //DialogueUI.SetActive(DialogueUI);
+        }
     }
     protected override void HandleAction()
     {

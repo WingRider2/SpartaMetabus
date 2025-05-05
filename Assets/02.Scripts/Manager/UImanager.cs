@@ -29,6 +29,5 @@ public class UIManager : MonoBehaviour
     {
         currentState = state;
         dialogueUI.SetActive(currentState);
-
     }
 }
