@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/FlappyGameScene.unity
     guid: b652a4a8f6ed62b42a48f5da66360a04
+  - enabled: 1
+    path: Assets/01.Scenes/DwarfStackGameScene.unity
+    guid: fc128d40dfbb15c478866bb87e18b180
   m_configObjects: {}

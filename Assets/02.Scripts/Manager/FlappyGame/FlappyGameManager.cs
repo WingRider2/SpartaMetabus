@@ -19,10 +19,6 @@ public class FlappyGameManager : MonoBehaviour
         this.uIManager = uIManager;
     }
 
-    private void Awake()
-    {
-
-    }
     private void Start()
     {
         uIManager.FlappyGameUpdateScore(0);

@@ -133,6 +133,8 @@ public class DwarfStackController : MonoBehaviour
 
             float rubbleHalfScale = deltaX / 2f; //러블의 x죄표 구하기
 
+            //CreateRubble(rubbleHalfScale, (int)deltaX);
+
         }
         else//짜를 필요가 없는경우
         {
@@ -144,5 +146,15 @@ public class DwarfStackController : MonoBehaviour
 
         return true;
     }
+    void CreateRubble(Vector3 pos, int count) // 
+    {
+        GameObject go = Instantiate(lastBlock.gameObject);
+        go.transform.parent = this.transform;// <= 이개념이 조금 힘들다. transform이 참조 개념이라 생성후 값을 변경가능하다.
 
+        go.transform.localPosition = pos; //생성죄표
+        go.transform.localRotation = Quaternion.identity; //회전 기본수치
+
+        go.AddComponent<Rigidbody>(); //Rigidbody를 추가하고
+        go.name = "Rubble"; //이름 짓지
+    }
 }

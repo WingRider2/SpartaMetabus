@@ -46,6 +46,10 @@ public class UIManager : MonoBehaviour
         dialogueUI.Init(dialogue , miniGame);
         ChangeState(UIState.Dialogue);
     }
+    public void SetoOffdialogue()
+    {
+        dialogueUI.SetActive(UIState.None);
+    }
     public void SetPlayFlappyGame()
     {
         ChangeState(UIState.Flappy);
@@ -62,6 +66,7 @@ public class UIManager : MonoBehaviour
     public void ChangeState(UIState state)
     {
         currentState = state;
+        Debug.Log(currentState.ToString());
         dialogueUI.SetActive(currentState);
         flappyUI.SetActive(currentState);
     }

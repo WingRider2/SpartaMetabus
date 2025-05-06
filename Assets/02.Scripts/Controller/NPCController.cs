@@ -47,6 +47,7 @@ public class NPCController : BaseController
             Debug.Log("¿­¸²");
             gameManager.openDialogue(lines, miniGame);
         }
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -63,6 +64,7 @@ public class NPCController : BaseController
         {
             inRange = false;
             button.SetActive(false);
+            gameManager.closeDialogue();
         }
     }
 

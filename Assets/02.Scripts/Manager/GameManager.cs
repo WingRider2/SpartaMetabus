@@ -21,12 +21,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         instance = this;//싱글톤생성
         player = FindAnyObjectByType<PlayerController>();
-        player.Init(this,new HomeMove(),new DungeonLookStategy());//일단 생성자로 구현
+        player.Init(this,new HomeMove(),new HomeLookStategy());//일단 생성자로 구현
         uiManager = FindAnyObjectByType<UIManager>();
         uiManager.init(this);
         npcManager = GetComponentInChildren<NPCManager>();
         npcManager.init(this);        
-
 
         flappyGameManager = GetComponentInChildren<FlappyGameManager>(true);        
     }
@@ -65,10 +64,25 @@ public class GameManager : MonoBehaviour
     {
         uiManager.SetOndialogue(Dialogues, miniGame);
     }
+    public void closeDialogue()
+    {
+        uiManager.SetoOffdialogue();
+    }
     public void SetFlappyPoint(int point)
     {
         Debug.Log(point);
         miniGameReselts[MiniGame.Flappy] = point;
+    }
+    public void startGame(MiniGame minigame)
+    {
+        if(minigame == MiniGame.Flappy)
+        {
+            startFlappyGame(SceneName.FlappyGameScene);
+        }
+        else if(minigame == MiniGame.Stack)
+        {
+            startStackGame(SceneName.DwarfStackGameScene);
+        }
     }
     public void startFlappyGame(SceneName sceneName)
     {
@@ -76,5 +90,12 @@ public class GameManager : MonoBehaviour
         flappyGameManager.transform.gameObject.SetActive(true);
         uiManager.SetPlayFlappyGame();//추후 미니게임 추가시 변경
         flappyGameManager.init(this , uiManager);
+    }
+    public void startStackGame(SceneName sceneName)
+    {
+        SceneManager.LoadScene($"{sceneName}");
+        //flappyGameManager.transform.gameObject.SetActive(true);
+        //uiManager.SetPlayFlappyGame();//추후 미니게임 추가시 변경
+        //flappyGameManager.init(this, uiManager);
     }
 }
