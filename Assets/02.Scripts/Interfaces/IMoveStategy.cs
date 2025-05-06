@@ -4,7 +4,7 @@ using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 using UnityEngine.InputSystem;
 
-public interface MoveStategy
+public interface IMoveStategy
 {
     void OnMove(InputValue inputValue, out Vector2 movementDirection);
 }

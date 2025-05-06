@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class HomeMove : MoveStategy
+public class HomeMove : IMoveStategy
 {
 
     public void OnMove(InputValue inputValue , out Vector2 movementDirection)

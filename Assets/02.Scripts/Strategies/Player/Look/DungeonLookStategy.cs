@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DungeonLook : LookStategy
+public class DungeonLookStategy : ILookStategy
 {
     public void OnLook(InputValue inputValue, Transform transform, Camera camera , Vector2 movementDirection, out Vector2 lookDirection)
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class HomeLook : LookStategy
+public class HomeLookStategy : ILookStategy
 {
     public void OnLook(InputValue inputValue, Transform transform, Camera camera, Vector2 movementDirection, out Vector2 lookDirection)
     {

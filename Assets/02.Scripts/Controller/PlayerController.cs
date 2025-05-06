@@ -8,9 +8,10 @@ public class PlayerController : BaseController
     private GameManager gameManager;
     private Camera camera;
 
-    private MoveStategy moveStategy;
-    private LookStategy lookStategy;
-    public void Init(GameManager gameManager, MoveStategy moveStategy, LookStategy lookStategy)
+    private IMoveStategy moveStategy;
+    private ILookStategy lookStategy;
+    private IClickStategy clickStategy;
+    public void Init(GameManager gameManager, IMoveStategy moveStategy, ILookStategy lookStategy)
     {
         this.gameManager = gameManager;
         camera = Camera.main;
@@ -31,12 +32,15 @@ public class PlayerController : BaseController
     {
         lookStategy.OnLook(inputValue, transform, camera ,movementDirection, out lookDirection);
     }
-
-    public void SetMoveStrategy(MoveStategy stategy)
+    void OnClick(InputValue inputValue)
+    {
+        lookStategy.OnLook(inputValue, transform, camera, movementDirection, out lookDirection);
+    }
+    public void SetMoveStrategy(IMoveStategy stategy)
     {
         moveStategy = stategy;
     }
-    public void SetLookStrategy(LookStategy stategy)
+    public void SetLookStrategy(ILookStategy stategy)
     {
         lookStategy = stategy;
     }

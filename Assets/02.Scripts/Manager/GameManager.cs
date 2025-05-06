@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         instance = this;//싱글톤생성
         player = FindAnyObjectByType<PlayerController>();
-        player.Init(this,new HomeMove(),new DungeonLook());//일단 생성자로 구현
+        player.Init(this,new HomeMove(),new DungeonLookStategy());//일단 생성자로 구현
         uiManager = FindAnyObjectByType<UIManager>();
 
         npcManager = GetComponentInChildren<NPCManager>();
