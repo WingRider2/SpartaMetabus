@@ -22,6 +22,8 @@ public enum MiniGame
 {
     None,
     Flappy,
+    Stack,
+    TopDown,
 }
 public enum NpcName
 {

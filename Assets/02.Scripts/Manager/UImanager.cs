@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    GameManager gameManager;
+
     DialogueUI dialogueUI;
     FlappyUI flappyUI;
+    LeaderboardUI leaderboardUI;
     private UIState currentState;
+
+    public  void init(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
+    }
 
     private void Awake()
     {
@@ -15,6 +23,9 @@ public class UIManager : MonoBehaviour
 
         flappyUI = GetComponentInChildren<FlappyUI>(true);
         flappyUI.Init(this);
+
+        leaderboardUI = GetComponentInChildren<LeaderboardUI>(true);
+
     }
 
     public void SetPlayGame()

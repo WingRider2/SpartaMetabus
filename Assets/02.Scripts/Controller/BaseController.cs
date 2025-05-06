@@ -46,10 +46,11 @@ public class BaseController : MonoBehaviour
     private void Rotate(Vector2 direction)// 무기회전
     {
         float rotZ = Mathf.Atan2(direction.y,direction.x)*Mathf.Rad2Deg;
-        bool isLeft = Mathf.Abs(rotZ) > 90f;
+        bool isLeft = direction.x < 0f;
 
-        Renderer.flipX = isLeft;    
-        
+        if (Renderer.flipX != isLeft)
+            Renderer.flipX = isLeft;
+
         if (weaponPivot != null)
         {
             weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ); // 무기 방향을 돌려준다.

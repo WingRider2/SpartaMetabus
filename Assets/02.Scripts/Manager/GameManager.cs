@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         player = FindAnyObjectByType<PlayerController>();
         player.Init(this,new HomeMove(),new DungeonLookStategy());//일단 생성자로 구현
         uiManager = FindAnyObjectByType<UIManager>();
-
+        uiManager.init(this);
         npcManager = GetComponentInChildren<NPCManager>();
         npcManager.init(this);        
 
@@ -45,9 +45,16 @@ public class GameManager : MonoBehaviour
             miniGameReselts=new Dictionary<MiniGame, int>();
         }
         if (!miniGameReselts.ContainsKey(MiniGame.Flappy))
-        {
-            
+        {            
             miniGameReselts.Add(MiniGame.Flappy, 0);
+        }
+        if (!miniGameReselts.ContainsKey(MiniGame.Stack))
+        {
+            miniGameReselts.Add(MiniGame.Stack, 0);
+        }
+        if (!miniGameReselts.ContainsKey(MiniGame.TopDown))
+        {
+            miniGameReselts.Add(MiniGame.TopDown, 0);
         }
     }
     public void StartGame()
@@ -67,7 +74,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene($"{sceneName}");
         flappyGameManager.transform.gameObject.SetActive(true);
-        uiManager.SetPlayFlappyGame();
+        uiManager.SetPlayFlappyGame();//추후 미니게임 추가시 변경
         flappyGameManager.init(this , uiManager);
     }
 }
