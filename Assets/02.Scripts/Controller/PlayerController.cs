@@ -34,7 +34,7 @@ public class PlayerController : BaseController
     }
     void OnClick(InputValue inputValue)
     {
-        lookStategy.OnLook(inputValue, transform, camera, movementDirection, out lookDirection);
+        //lookStategy.OnLook(inputValue, transform, camera, movementDirection, out lookDirection);
     }
     public void SetMoveStrategy(IMoveStategy stategy)
     {

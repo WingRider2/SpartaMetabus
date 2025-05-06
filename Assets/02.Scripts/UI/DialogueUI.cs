@@ -12,7 +12,7 @@ public class DialogueUI : BaseUI
     [SerializeField] private Button CancelButton;
     [SerializeField] private TextMeshProUGUI buttoText;
     string[] dialogues = null;
-    int nextTextCount = 0;
+    int nextTextCount = 1;
     MiniGame miniGame;
     protected override UIState GetUIState()
     {
@@ -23,24 +23,32 @@ public class DialogueUI : BaseUI
         this.dialogues = null;
         this.dialogues = dialogues;
         this.miniGame = miniGame;
-        nextTextCount = 0;
+        nextTextCount = 1;
         UpdateNaxtText();
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        CancelButton.onClick.AddListener(() => recertCount(0)); //거절 버튼
     }
     public void UpdateNaxtText()
     {
+
+
+        NextButton.onClick.RemoveAllListeners();
+
         if (nextTextCount < dialogues.Length)
         {
-            if (dialogues[nextTextCount].Contains("@")) {
-                dialogues[nextTextCount] = dialogues[nextTextCount].Replace("@", GameManager.miniGameReselts[miniGame].ToString());
+
+            if (dialogues[nextTextCount].Contains("@"))
+            {
+               dialogues[nextTextCount] = dialogues[nextTextCount].Replace("@", GameManager.miniGameReselts[miniGame].ToString());
             }
+
+
             text.text = dialogues[nextTextCount];
-        }            
-        NextButton.onClick.RemoveAllListeners();
+        }
+
         if (dialogues.Length == nextTextCount) NextButton.onClick.AddListener(() => gameStart(SceneName.FlappyGameScene));
         else NextButton.onClick.AddListener(() => nextCount());
     }
@@ -52,6 +60,11 @@ public class DialogueUI : BaseUI
     public void nextCount()
     {
         nextTextCount++;
+        UpdateNaxtText();
+    }
+    public void recertCount(int num)
+    {
+        nextTextCount = num;
         UpdateNaxtText();
     }
 }
