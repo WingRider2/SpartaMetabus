@@ -3,7 +3,7 @@ using UnityEngine;
 public class TopDownGameManager : MonoBehaviour
 {
     GameManager gameManager;
-
+    UIManager uIManager;
     public static TopDownGameManager instance;
 
     private ToDownGameUIManager toDownGameUIManager;
@@ -14,17 +14,23 @@ public class TopDownGameManager : MonoBehaviour
     private ResourceController _playerResourceController; //플레이어 리소스 정보
 
     [SerializeField] private int currentWaveIndex = 0;
+    [SerializeField] private GameObject playerPrefab;
 
-    public void init(GameManager gameManager)
+    public void init(GameManager gameManager, UIManager uIManager)
     {
         this.gameManager = gameManager;
+        instance = this;
+        this.uIManager = uIManager;
+
+        GameObject playerObj = Instantiate(playerPrefab);
+        player = playerObj.GetComponent<PlayerController>();
+        player.Init(gameManager, new DungeonMove(), new DungeonLookStategy()); //플레이어 초기화 
     }
 
     private void Awake()
     {
-        instance = this;//싱글톤생성
-        player = FindObjectOfType<PlayerController>();//플레이어 찻고
-        //player.Init(gameManager); //플레이어 초기화 
+        instance = this;//싱글톤생성       
+        
 
         toDownGameUIManager = FindObjectOfType<ToDownGameUIManager>();
 
@@ -33,10 +39,13 @@ public class TopDownGameManager : MonoBehaviour
         //_playerResourceController.AddHealthChangeEvent(uiManager.ChangePlayerHP);
 
         enemyManager = GetComponentInChildren<EnemyManager>(); //몬스터 매니저 찾고
+        enemyManager.Init(gameManager);
         //enemyManager.Init(this); //몬스터 매니저에 게임매니저 정보 전달.
     }
     private void Start()
     {
+
+
         if (!isFirstLoading)
         {
             StartGame();

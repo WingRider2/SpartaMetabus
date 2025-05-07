@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16dc560782417084d80015d662d0b4b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterRenderer: {fileID: 2617351474102947474}
+  Renderer: {fileID: 2617351474102947474}
   weaponPivot: {fileID: 4593748219490775462}
   WeaponPrefab: {fileID: 7308061560021270996, guid: 27372440faf89414eaa362f4961bc19c, type: 3}
   followRange: 15
@@ -136,11 +136,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3799717655891001590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd1924df9c8ac04e8b29ca35eb27be8, type: 3}
+  m_Script: {fileID: 11500000, guid: 38b44db154b653c4aadd3fdb1be1a02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  speed: 2
+  speed: 3
+  flapForce: 6
 --- !u!114 &6402688003475572560
 MonoBehaviour:
   m_ObjectHideFlags: 0

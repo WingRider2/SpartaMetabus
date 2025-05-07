@@ -65,6 +65,7 @@ public class EnemyManager : MonoBehaviour
 
     private void SpawnRandomEnemy()
     {
+
         if (enemyPrefabs.Count == 0 || spawnAreas.Count == 0)
         {
             Debug.LogWarning("Enemy Prefabs 또는 Spawn Areas가 설정되지 않았습니다.");
@@ -86,7 +87,19 @@ public class EnemyManager : MonoBehaviour
         // 적 생성 및 리스트에 추가
         GameObject spawnedEnemy = Instantiate(randomPrefab, new Vector3(randomPosition.x, randomPosition.y), Quaternion.identity);
         EnemyController enemyController = spawnedEnemy.GetComponent<EnemyController>();
-        enemyController.Init(this, gameManager.player.transform);
+
+        if (gameManager == null) Debug.LogError("gameManager가 null입니다");
+        if (gameManager?.topDownGameManager == null) Debug.LogError("topDownGameManager가 null입니다");
+        if (gameManager?.topDownGameManager?.player == null) Debug.LogError("player가 null입니다");
+
+        enemyController.Init(this, gameManager.topDownGameManager.player.transform,new DungeonMove(),new DungeonLookStategy());
+
+
+        if (randomPrefab == null) Debug.LogError("선택된 프리팹이 null입니다!");
+        if (spawnedEnemy == null) Debug.LogError("생성된 적 오브젝트가 null입니다!");
+        if (enemyController == null) Debug.LogError("EnemyController를 찾을 수 없습니다!");
+        if (gameManager == null) Debug.LogError("gameManager가 null입니다!");
+        if (gameManager?.topDownGameManager?.player == null) Debug.LogError("player가 null입니다!");
 
         activeEnemies.Add(enemyController);
     }

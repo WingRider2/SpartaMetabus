@@ -18,7 +18,6 @@ public class PlayerController : BaseController
         camera = Camera.main;
         this.moveStategy = moveStategy;
         this.lookStategy = lookStategy;
-
     }
     protected override void Awake()
     {

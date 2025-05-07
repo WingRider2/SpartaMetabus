@@ -912,10 +912,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Renderer: {fileID: 7147858351350319620}
   weaponPivot: {fileID: 0}
+  WeaponPrefab: {fileID: 0}
   triggerArea: {fileID: 705893213441756899}
   text: {fileID: 4095888630626220700}
   button: {fileID: 724153799357818165}
-  lines: []
+  lines:
+  - "\uC548\uB155"
+  - "\uC6B0\uB9AC\uB97C \uC313\uC544\uC11C \uD0D1\uC744 \uB9CC\uB4E4\uC5B4 \uC918"
   npcName: 2
   miniGame: 2
 --- !u!114 &5307744455200137057

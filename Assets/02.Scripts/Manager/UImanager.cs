@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     DialogueUI dialogueUI;
     FlappyUI flappyUI;
     LeaderboardUI leaderboardUI;
+    ToDownGameUIManager toDownGameUIManager;
     private UIState currentState;
 
     public  void init(GameManager gameManager)
@@ -25,6 +26,8 @@ public class UIManager : MonoBehaviour
         flappyUI.Init(this);
 
         leaderboardUI = GetComponentInChildren<LeaderboardUI>(true);
+
+        toDownGameUIManager = GetComponentInChildren<ToDownGameUIManager>(true);
 
     }
 

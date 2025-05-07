@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
         npcManager = GetComponentInChildren<NPCManager>();
         npcManager.init(this);        
 
-        flappyGameManager = GetComponentInChildren<FlappyGameManager>(true);        
+        flappyGameManager = GetComponentInChildren<FlappyGameManager>(true);
+        topDownGameManager = GetComponentInChildren<TopDownGameManager>(true);        
     }
     private void Start()
     {
@@ -84,6 +85,10 @@ public class GameManager : MonoBehaviour
         {
             startStackGame(SceneName.DwarfStackGameScene);
         }
+        else if (minigame == MiniGame.TopDown)
+        {
+            startToDownGame(SceneName.TopDownGameScene);
+        }
     }
     public void startFlappyGame(SceneName sceneName)
     {
@@ -98,5 +103,12 @@ public class GameManager : MonoBehaviour
         //flappyGameManager.transform.gameObject.SetActive(true);
         //uiManager.SetPlayFlappyGame();//추후 미니게임 추가시 변경
         //flappyGameManager.init(this, uiManager);
+    }
+    public void startToDownGame(SceneName sceneName)
+    {
+        SceneManager.LoadScene($"{sceneName}");
+        topDownGameManager.transform.gameObject.SetActive(true);
+        //uiManager.SetPlayFlappyGame();//추후 미니게임 추가시 변경
+        topDownGameManager.init(this, uiManager);
     }
 }

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/DwarfStackGameScene.unity
     guid: fc128d40dfbb15c478866bb87e18b180
+  - enabled: 1
+    path: Assets/01.Scenes/TopDownGameScene.unity
+    guid: f0d3080ba0b558b4e95bdd0252d3a3b1
   m_configObjects: {}

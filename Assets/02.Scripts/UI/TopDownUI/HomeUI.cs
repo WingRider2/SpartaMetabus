@@ -17,7 +17,7 @@ public class HomeUI : TopDownUIBase
 
     public void OnClickStartButton()
     {
-        GameManager.instance.StartGame();
+       TopDownGameManager.instance.StartGame();
     }
 
     public void OnClickExitButton()

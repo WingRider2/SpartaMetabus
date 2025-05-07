@@ -11,8 +11,8 @@ public class DialogueUI : BaseUI
     [SerializeField] private Button NextButton;
     [SerializeField] private Button CancelButton;
     [SerializeField] private TextMeshProUGUI buttoText;
-    string[] dialogues = null;
-    int nextTextCount = 1;
+    [SerializeField] string[] dialogues = null;
+    [SerializeField] int nextTextCount = 1;
     MiniGame miniGame;
     protected override UIState GetUIState()
     {
@@ -23,7 +23,7 @@ public class DialogueUI : BaseUI
         this.dialogues = null;
         this.dialogues = dialogues;
         this.miniGame = miniGame;
-        nextTextCount = 1;
+        nextTextCount = 0;
         UpdateNaxtText();
     }
     // Start is called before the first frame update
@@ -31,26 +31,7 @@ public class DialogueUI : BaseUI
     {
         CancelButton.onClick.AddListener(() => recertCount(0)); //거절 버튼
     }
-    public void testUpdateNaxtText()
-    {
 
-
-        NextButton.onClick.RemoveAllListeners();
-
-        if (nextTextCount < dialogues.Length)
-        {
-
-            if (dialogues[nextTextCount].Contains("@"))
-            {
-               dialogues[nextTextCount] = dialogues[nextTextCount].Replace("@", GameManager.miniGameReselts[miniGame].ToString());
-            }
-            
-            text.text = dialogues[nextTextCount];
-        }
-
-        if (dialogues.Length == nextTextCount) NextButton.onClick.AddListener(() => gameStart(miniGame));
-        else NextButton.onClick.AddListener(() => nextCount());
-    }
     public void UpdateNaxtText()
     {
         if (nextTextCount < dialogues.Length)
@@ -62,6 +43,25 @@ public class DialogueUI : BaseUI
             text.text = dialogues[nextTextCount];
         }
         NextButton.onClick.RemoveAllListeners();
+        if (dialogues.Length == nextTextCount) NextButton.onClick.AddListener(() => gameStart(miniGame));
+        else NextButton.onClick.AddListener(() => nextCount());
+    }
+    public void testUpdateNaxtText()
+    {
+
+        NextButton.onClick.RemoveAllListeners();
+
+        if (nextTextCount < dialogues.Length)
+        {
+
+            if (dialogues[nextTextCount].Contains("@"))
+            {
+                dialogues[nextTextCount] = dialogues[nextTextCount].Replace("@", GameManager.miniGameReselts[miniGame].ToString());
+            }
+
+            text.text = dialogues[nextTextCount];
+        }
+
         if (dialogues.Length == nextTextCount) NextButton.onClick.AddListener(() => gameStart(miniGame));
         else NextButton.onClick.AddListener(() => nextCount());
     }

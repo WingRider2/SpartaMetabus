@@ -7,10 +7,15 @@ public class EnemyController : BaseController
 
     [SerializeField] private float followRange = 15f;
 
-    public void Init(EnemyManager enemyManager, Transform target) //
+    private IMoveStategy moveStategy;
+    private ILookStategy lookStategy;
+
+    public void Init(EnemyManager enemyManager, Transform target, IMoveStategy moveStategy, ILookStategy lookStategy) //
     {
         this.enemyManager = enemyManager;
         this.target = target;
+        this.moveStategy = moveStategy;
+        this.lookStategy = lookStategy;
     }
 
     protected override void HandleAction()

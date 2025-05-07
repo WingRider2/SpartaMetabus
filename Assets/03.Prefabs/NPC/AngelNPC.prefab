@@ -439,6 +439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Renderer: {fileID: 6260378055082224539}
   weaponPivot: {fileID: 0}
+  WeaponPrefab: {fileID: 0}
   triggerArea: {fileID: 4681345449787768804}
   text: {fileID: 7332825738431298145}
   button: {fileID: 7117502806082835107}
@@ -479,6 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   speed: 3
+  flapForce: 6
 --- !u!1 &6522911688631518577
 GameObject:
   m_ObjectHideFlags: 0
