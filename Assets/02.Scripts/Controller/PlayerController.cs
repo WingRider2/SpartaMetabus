@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerController : BaseController
@@ -36,6 +37,15 @@ public class PlayerController : BaseController
     {
         //lookStategy.OnLook(inputValue, transform, camera, movementDirection, out lookDirection);
     }
+
+    void OnFire(InputValue inputValue)
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        isAttacking = inputValue.isPressed;
+    }
+
     public void SetMoveStrategy(IMoveStategy stategy)
     {
         moveStategy = stategy;
@@ -43,5 +53,10 @@ public class PlayerController : BaseController
     public void SetLookStrategy(ILookStategy stategy)
     {
         lookStategy = stategy;
+    }
+    public override void Death()
+    {
+        base.Death();
+        gameManager.topDownGameManager.GameOver();
     }
 }

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager;
     private NPCManager npcManager;
     private FlappyGameManager flappyGameManager;
+    public TopDownGameManager topDownGameManager;
 
     public static bool isFirstLoading = false;
     public PlayerController player { get; private set; }

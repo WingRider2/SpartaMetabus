@@ -10,18 +10,29 @@ public class BaseController : MonoBehaviour
     protected Rigidbody2D _rigidbody;
     protected IAnimationHandler animationHandler;
     protected StatHandler statHandler;
+    [SerializeField] public WeaponHandler WeaponPrefab;
+    protected WeaponHandler weaponHandler;
+
+    protected bool isAttacking; //공격중인지 확인
+    private float timeSinceLastAttack = float.MaxValue; //마지막 공격시간 다음공격 시간을 알아야 하기에
 
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
     protected Vector2 lookDirection = Vector2.zero;
     public Vector2 LookDirection { get { return lookDirection; } }
 
-
+    private Vector2 knockback = Vector2.zero;
+    private float knockbackDuration = 0.0f;
 
     protected virtual void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();        
+        _rigidbody = GetComponent<Rigidbody2D>();
+        animationHandler = GetComponent<IAnimationHandler>();
         statHandler = GetComponent<StatHandler>();
+        if (WeaponPrefab != null)
+            weaponHandler = Instantiate(WeaponPrefab, weaponPivot); //무기생성
+        else
+            weaponHandler = GetComponentInChildren<WeaponHandler>();
     }
     protected virtual void Start()
     {
@@ -31,11 +42,15 @@ public class BaseController : MonoBehaviour
     {
         HandleAction();
         Rotate(lookDirection);
-        
+        HandleAttackDelay();
     }
     protected virtual void FixedUpdate()
     {
         Movment(movementDirection);
+        if (knockbackDuration > 0.0f)//넉백 시간을 빼준다.
+        {
+            knockbackDuration -= Time.fixedDeltaTime;
+        }
     }
 
     protected virtual void HandleAction()
@@ -55,6 +70,7 @@ public class BaseController : MonoBehaviour
         {
             weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ); // 무기 방향을 돌려준다.
         }
+        weaponHandler?.Rotate(isLeft);
     }
 
     private void FlipX(Vector2 direction)
@@ -64,7 +80,60 @@ public class BaseController : MonoBehaviour
     private void Movment(Vector2 direction)
     {
         direction = direction * statHandler.Speed;
+        if (knockbackDuration > 0.0f)
+        {
+            direction *= 0.2f;
+            direction += knockback;
+        }
         _rigidbody.velocity = direction;
         animationHandler.Move(direction);
+    }
+
+    public void ApplyKnockback(Transform other, float power, float duration)// 피격에 대한 대상 , 힘 , 지속시간의 정보가 들어온다.
+    {
+        knockbackDuration = duration; //지속시간
+        knockback = -(other.position - transform.position).normalized * power; //피격시 날라갈 방향이기에 -를 사용하고 , 
+    }
+
+    private void HandleAttackDelay()//무기 재발사 에 필요한 시간 계산
+    {
+        if (weaponHandler == null)
+            return;
+
+        if (timeSinceLastAttack <= weaponHandler.Delay)
+        {
+            timeSinceLastAttack += Time.deltaTime;
+        }
+
+        if (isAttacking && timeSinceLastAttack > weaponHandler.Delay)
+        {
+            timeSinceLastAttack = 0;
+            Attack();
+        }
+    }
+
+    protected virtual void Attack()
+    {
+        if (lookDirection != Vector2.zero)
+            weaponHandler?.Attack();
+    }
+
+    public virtual void Death()
+    {
+        _rigidbody.velocity = Vector3.zero;
+
+        foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
+        {
+            Color color = renderer.color;
+            color.a = 0.3f;
+            renderer.color = color;
+        }
+
+        foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
+        {
+            component.enabled = false;
+        }
+
+        Destroy(gameObject, 2f);
     }
 }

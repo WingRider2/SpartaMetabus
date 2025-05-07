@@ -17,6 +17,7 @@ public enum SceneName
     HomeTownScene,
     FlappyGameScene,
     DwarfStackGameScene,
+    TopDownGameScene,
 }
 
 public enum MiniGame
